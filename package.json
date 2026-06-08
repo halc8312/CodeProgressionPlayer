@@ -1,0 +1,25 @@
+{
+  "name": "code-progression-player",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "コード進行を入力するとギター(歪み)・ドラム・ベースを鳴らせるバンドデモ作成Webアプリ",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint . --ext .ts"
+  },
+  "dependencies": {
+    "tone": "^15.0.4"
+  },
+  "devDependencies": {
+    "@types/node": "^20.19.42",
+    "@typescript-eslint/eslint-plugin": "^7.18.0",
+    "@typescript-eslint/parser": "^7.18.0",
+    "eslint": "^8.57.0",
+    "typescript": "^5.5.4",
+    "vite": "^5.4.8"
+  }
+}
