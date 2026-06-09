@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Code Progression Player — バンドデモメーカー</title>
+    <meta
+      name="description"
+      content="コード進行を入力すると、歪みギター・ドラム・ルート弾きベースを鳴らせるブラウザ完結のバンドデモ作成アプリ。"
+    />
+  </head>
+  <body>
+    <div id="app">
+      <header class="app-header">
+        <h1>Code Progression Player</h1>
+        <p class="tagline">
+          コード進行を打ち込んで、歪みギター・ドラム・ベースでバンドデモを鳴らそう
+        </p>
+      </header>
+
+      <section class="panel progression-panel">
+        <label class="field-label" for="progression">コード進行</label>
+        <input
+          id="progression"
+          class="progression-input"
+          type="text"
+          spellcheck="false"
+          autocomplete="off"
+          value="Am F C G"
+        />
+        <p class="hint">
+          スペースか <code>|</code> 区切りで入力（例: <code>Am F C G</code>、
+          <code>E5 G5 A5</code>、<code>Cmaj7 | A7 | Dm7 | G7</code>）
+        </p>
+        <div class="presets" id="presets"></div>
+        <div class="chord-strip" id="chord-strip"></div>
+      </section>
+
+      <div class="controls-grid">
+        <section class="panel">
+          <h2>テンポ &amp; 構成</h2>
+          <div class="control-row">
+            <label for="bpm">テンポ <span id="bpm-value">110</span> BPM</label>
+            <input id="bpm" type="range" min="50" max="220" step="1" value="110" />
+          </div>
+          <div class="control-row">
+            <label for="bars">1コードの長さ</label>
+            <select id="bars">
+              <option value="1">1小節</option>
+              <option value="2">2小節</option>
+              <option value="4">4小節</option>
+            </select>
+          </div>
+        </section>
+
+        <section class="panel">
+          <h2>ギター</h2>
+          <div class="control-row">
+            <label for="drive-mode">アンプ</label>
+            <select id="drive-mode">
+              <option value="clean">クリーン</option>
+              <option value="overdrive" selected>オーバードライブ</option>
+              <option value="distortion">ディストーション</option>
+            </select>
+          </div>
+          <div class="control-row">
+            <label for="drive">歪み量</label>
+            <input id="drive" type="range" min="0" max="1" step="0.01" value="0.5" />
+          </div>
+          <div class="control-row">
+            <label for="tone">トーン</label>
+            <input id="tone" type="range" min="0" max="1" step="0.01" value="0.55" />
+          </div>
+          <div class="control-row">
+            <label for="guitar-rhythm">リズム</label>
+            <select id="guitar-rhythm">
+              <option value="sustain">ジャーン（伸ばし）</option>
+              <option value="quarter">4分刻み</option>
+              <option value="eighth" selected>8分刻み</option>
+              <option value="off">ミュート</option>
+            </select>
+          </div>
+          <div class="control-row">
+            <label for="guitar-vol">音量</label>
+            <input id="guitar-vol" type="range" min="-30" max="6" step="1" value="-6" />
+          </div>
+        </section>
+
+        <section class="panel">
+          <h2>ベース</h2>
+          <div class="control-row">
+            <label for="bass-pattern">ルート弾き</label>
+            <select id="bass-pattern">
+              <option value="whole">全音符</option>
+              <option value="quarter" selected>4分</option>
+              <option value="eighth">8分</option>
+              <option value="off">ミュート</option>
+            </select>
+          </div>
+          <div class="control-row">
+            <label for="bass-vol">音量</label>
+            <input id="bass-vol" type="range" min="-30" max="6" step="1" value="-4" />
+          </div>
+        </section>
+
+        <section class="panel">
+          <h2>ドラム</h2>
+          <div class="control-row">
+            <label for="drum-pattern">パターン</label>
+            <select id="drum-pattern">
+              <option value="rock8" selected>8ビート</option>
+              <option value="rock16">16ビート</option>
+              <option value="halftime">ハーフタイム</option>
+              <option value="fourfloor">4つ打ち</option>
+              <option value="off">ミュート</option>
+            </select>
+          </div>
+          <div class="control-row">
+            <label for="drum-vol">音量</label>
+            <input id="drum-vol" type="range" min="-30" max="6" step="1" value="-3" />
+          </div>
+        </section>
+      </div>
+
+      <div class="transport">
+        <button id="play" class="play-btn" type="button">
+          <span class="play-icon">▶</span>
+          <span class="play-text">再生</span>
+        </button>
+        <span class="transport-hint">
+          ループ再生します。再生中もツマミやコード進行を変えられます。
+        </span>
+      </div>
+
+      <footer class="app-footer">
+        ブラウザ完結・サーバー不要 — Web Audio (Tone.js) で生成
+      </footer>
+    </div>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
